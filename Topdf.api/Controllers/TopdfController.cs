@@ -121,22 +121,22 @@ namespace Topdf.api.Controllers
         //        }
         //    }
 
-        //    [HttpGet]
-        //    public HttpResponseMessage EmailExists(string email)
-        //    {
-        //        try
-        //        {
-        //            using (var context = new ToPDFDBContext())
-        //            {
-        //                bool val = context.Users.Any(c => c.Email == email);
-        //                return SendHttpResponse(val, HttpStatusCode.OK);
-        //            }
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            return SendHttpResponse(e.Message, HttpStatusCode.BadRequest);
-        //        }
-        //    }
+        [HttpGet]
+        public HttpResponseMessage EmailExists(string email)
+        {
+            try
+            {
+                using (var context = new ToPDFDBContext())
+                {
+                    bool val = context.Users.Any(c => c.Email == email);
+                    return SendHttpResponse(val, HttpStatusCode.OK);
+                }
+            }
+            catch (Exception e)
+            {
+                return SendHttpResponse(e.Message, HttpStatusCode.BadRequest);
+            }
+        }
         //    [HttpPost]
         //    public HttpResponseMessage EmailVerified(string email)
         //    {
