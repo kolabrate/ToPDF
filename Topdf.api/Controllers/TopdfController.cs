@@ -98,28 +98,28 @@ namespace Topdf.api.Controllers
         //        }
         //    }
 
-        [HttpPost]
-        public HttpResponseMessage Login([FromBody]dynamic value)
-        {
-            try
-            {
-                using (var context = new ToPDFDBContext())
-                {
-                    string e = value.Email;
-                    string p = value.Password;
-                    var user = context.Users.FirstOrDefault(c => c.Email == e && c.Password == p);
-                    if (user == null) return SendHttpResponse("Not Authenticated", HttpStatusCode.BadRequest);
+        //    [HttpPost]
+        //    public HttpResponseMessage Login([FromBody]dynamic value)
+        //    {
+        //        try
+        //        {
+        //            using (var context = new ToPDFDBContext())
+        //            {
+        //                string e = value.Email;
+        //                string p = value.Password;
+        //                var user = context.Users.FirstOrDefault(c => c.Email == e && c.Password == p);
+        //                if (user == null) return SendHttpResponse("Not Authenticated", HttpStatusCode.BadRequest);
 
-                    string token = Encrypt(e + "|" + DateTime.Now.ToString("yyyyMMddHHmmssff"));
-                    var lresult = new LoginRes() { UserId = user.UserId, Token = token, Avatar = user.Avatar };
-                    return SendHttpResponse(lresult, HttpStatusCode.OK);
-                }
-            }
-            catch (Exception e)
-            {
-                return SendHttpResponse(e.Message, HttpStatusCode.BadRequest);
-            }
-        }
+        //                string token = Encrypt(e + "|" + DateTime.Now.ToString("yyyyMMddHHmmssff"));
+        //                var lresult = new LoginRes() { UserId = user.UserId, Token = token, Avatar = user.Avatar };
+        //                return SendHttpResponse(lresult, HttpStatusCode.OK);
+        //            }
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            return SendHttpResponse(e.Message, HttpStatusCode.BadRequest);
+        //        }
+        //    }
 
         //    [HttpGet]
         //    public HttpResponseMessage EmailExists(string email)
