@@ -186,34 +186,34 @@ namespace Topdf.api.Controllers
 
         //    #endregion
 
-        //    #region Private Methods
+        #region Private Methods
 
-        //    private void SendEmail(string pwd, string email)
-        //    {
+        private void SendEmail(string pwd, string email)
+        {
 
-        //    }
-        //    private string Encrypt(string input)
-        //    {
-        //        byte[] inputArray = UTF8Encoding.UTF8.GetBytes(input);
-        //        TripleDESCryptoServiceProvider tripleDES = new TripleDESCryptoServiceProvider();
-        //        tripleDES.Key = Convert.FromBase64String("YC3t4aGXsyX1kw/MFlVcSMezIpyxbcUL");
-        //        tripleDES.IV = ASCIIEncoding.ASCII.GetBytes("ToPDF_K");
-        //        ICryptoTransform cTransform = tripleDES.CreateEncryptor();
-        //        byte[] resultArray = cTransform.TransformFinalBlock(inputArray, 0, inputArray.Length);
-        //        tripleDES.Clear();
-        //        return Convert.ToBase64String(resultArray, 0, resultArray.Length);
-        //    }
+        }
+        private string Encrypt(string input)
+        {
+            byte[] inputArray = UTF8Encoding.UTF8.GetBytes(input);
+            TripleDESCryptoServiceProvider tripleDES = new TripleDESCryptoServiceProvider();
+            tripleDES.Key = Convert.FromBase64String("YC3t4aGXsyX1kw/MFlVcSMezIpyxbcUL");
+            tripleDES.IV = ASCIIEncoding.ASCII.GetBytes("ToPDF_K");
+            ICryptoTransform cTransform = tripleDES.CreateEncryptor();
+            byte[] resultArray = cTransform.TransformFinalBlock(inputArray, 0, inputArray.Length);
+            tripleDES.Clear();
+            return Convert.ToBase64String(resultArray, 0, resultArray.Length);
+        }
 
-        //    private HttpResponseMessage SendHttpResponse(object content, HttpStatusCode status)
-        //    {
-        //        var result = new HttpResponseMessage(status);
-        //        var serializer = new JavaScriptSerializer();
-        //        var contentStr = serializer.Serialize(content);
-        //        result.Content = new StringContent(contentStr);
-        //        return result;
-        //    }
-        //}
-        //#endregion
+        private HttpResponseMessage SendHttpResponse(object content, HttpStatusCode status)
+        {
+            var result = new HttpResponseMessage(status);
+            var serializer = new JavaScriptSerializer();
+            var contentStr = serializer.Serialize(content);
+            result.Content = new StringContent(contentStr);
+            return result;
+        }
+
+        #endregion
     }
     public class LoginRes
     {
