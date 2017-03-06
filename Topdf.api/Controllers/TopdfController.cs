@@ -137,28 +137,28 @@ namespace Topdf.api.Controllers
                 return SendHttpResponse(e.Message, HttpStatusCode.BadRequest);
             }
         }
-        //    [HttpPost]
-        //    public HttpResponseMessage EmailVerified(string email)
-        //    {
-        //        try
-        //        {
-        //            using (var context = new ToPDFDBContext())
-        //            {
-        //                var user = context.Users.FirstOrDefault(c => c.Email == email);
-        //                if (user != null)
-        //                {
-        //                    user.EmailVerifiedDate = DateTime.Now;
-        //                }
+        [HttpPost]
+        public HttpResponseMessage EmailVerified(string email)
+        {
+            try
+            {
+                using (var context = new ToPDFDBContext())
+                {
+                    var user = context.Users.FirstOrDefault(c => c.Email == email);
+                    if (user != null)
+                    {
+                        user.EmailVerifiedDate = DateTime.Now;
+                    }
 
-        //                context.SaveChanges();
-        //                return SendHttpResponse("Success", HttpStatusCode.OK);
-        //            }
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            return SendHttpResponse(e.Message, HttpStatusCode.BadRequest);
-        //        }
-        //    }
+                    context.SaveChanges();
+                    return SendHttpResponse("Success", HttpStatusCode.OK);
+                }
+            }
+            catch (Exception e)
+            {
+                return SendHttpResponse(e.Message, HttpStatusCode.BadRequest);
+            }
+        }
 
         //    [HttpPost]
         //    public HttpResponseMessage ResetPwdAndEmail(string email)
