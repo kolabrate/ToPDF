@@ -24,6 +24,7 @@ namespace Topdf.api.Controllers
         }
 
         #region Service Methods
+        [HttpPost]
         public HttpResponseMessage PostPdf()
         {
 
