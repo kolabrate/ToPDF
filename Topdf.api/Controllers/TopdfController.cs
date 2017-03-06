@@ -15,9 +15,7 @@ namespace Topdf.api.Controllers
         [HttpGet]
         public IEnumerable<string> GetName()
         {
-
             return NameList.AsEnumerable();
-
         }
 
     }
