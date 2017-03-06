@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Topdf.api", "Topdf.api\Topdf.api.csproj", "{BF68E967-9724-43A6-B3F9-8C3481E9E709}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Topdf.api.Tests", "Topdf.api.Tests\Topdf.api.Tests.csproj", "{3F106ACC-2C22-4A0A-B29C-9399867C4620}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +15,6 @@ Global
 		{BF68E967-9724-43A6-B3F9-8C3481E9E709}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BF68E967-9724-43A6-B3F9-8C3481E9E709}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BF68E967-9724-43A6-B3F9-8C3481E9E709}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3F106ACC-2C22-4A0A-B29C-9399867C4620}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3F106ACC-2C22-4A0A-B29C-9399867C4620}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3F106ACC-2C22-4A0A-B29C-9399867C4620}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3F106ACC-2C22-4A0A-B29C-9399867C4620}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

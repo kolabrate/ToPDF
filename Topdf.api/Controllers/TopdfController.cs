@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace Topdf.api.Controllers
 {
-    public class DefaultController : ApiController
+    public class TopdfController : ApiController
     {
 
         public List<string> NameList = new List<string>() {"AnandA","Maran","Priya","Arjun"};
