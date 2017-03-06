@@ -56,47 +56,47 @@ namespace Topdf.api.Controllers
         //        }
         //    }
 
-        //    [HttpGet]
-        //    public HttpResponseMessage Sample()
-        //    {
-        //        return SendHttpResponse("Success  - " + DateTime.Now.ToString(), HttpStatusCode.OK);
-        //    }
+        [HttpGet]
+        public HttpResponseMessage Sample()
+        {
+            return SendHttpResponse("Success  - " + DateTime.Now.ToString(), HttpStatusCode.OK);
+        }
 
-        //    [HttpPost]
-        //    public HttpResponseMessage CreateUser([FromBody]User value)
-        //    {
-        //        try
-        //        {
-        //            using (var context = new ToPDFDBContext())
-        //            {
-        //                var user = new User();
-        //                user.AddressLine1 = value.AddressLine1;
-        //                user.AddressLine2 = value.AddressLine2;
-        //                user.City = value.City;
-        //                user.CompanyName = value.CompanyName;
-        //                user.CompanyWebsite = value.CompanyWebsite;
-        //                user.Country = value.Country;
-        //                user.Email = value.Email;
-        //                user.FirstName = value.FirstName;
-        //                user.LastName = value.LastName;
-        //                user.Password = value.Password;
-        //                user.Phone = value.Phone;
-        //                user.PostCode = value.PostCode;
-        //                user.State = value.State;
-        //                user.Avatar = value.Avatar;
-        //                user.CreatedDate = DateTime.Now;
+        [HttpPost]
+        public HttpResponseMessage CreateUser([FromBody]User value)
+        {
+            try
+            {
+                using (var context = new ToPDFDBContext())
+                {
+                    var user = new User();
+                    user.AddressLine1 = value.AddressLine1;
+                    user.AddressLine2 = value.AddressLine2;
+                    user.City = value.City;
+                    user.CompanyName = value.CompanyName;
+                    user.CompanyWebsite = value.CompanyWebsite;
+                    user.Country = value.Country;
+                    user.Email = value.Email;
+                    user.FirstName = value.FirstName;
+                    user.LastName = value.LastName;
+                    user.Password = value.Password;
+                    user.Phone = value.Phone;
+                    user.PostCode = value.PostCode;
+                    user.State = value.State;
+                    user.Avatar = value.Avatar;
+                    user.CreatedDate = DateTime.Now;
 
-        //                context.Users.Add(user);
-        //                context.SaveChanges();
+                    context.Users.Add(user);
+                    context.SaveChanges();
 
-        //                return SendHttpResponse("Success", HttpStatusCode.OK);
-        //            }
-        //        }
-        //        catch (Exception ex)
-        //        {
-        //            return SendHttpResponse(ex.Message, HttpStatusCode.BadRequest);
-        //        }
-        //    }
+                    return SendHttpResponse("Success", HttpStatusCode.OK);
+                }
+            }
+            catch (Exception ex)
+            {
+                return SendHttpResponse(ex.Message, HttpStatusCode.BadRequest);
+            }
+        }
 
         //    [HttpPost]
         //    public HttpResponseMessage Login([FromBody]dynamic value)
