@@ -17,11 +17,11 @@ namespace Topdf.api.Controllers
 
         public List<string> NameList = new List<string>() { "AnandA", "Maran", "Priya", "Arjun" };
 
-        [HttpGet]
-        public IEnumerable<string> GetName()
-        {
-            return NameList.AsEnumerable();
-        }
+        //[HttpGet]
+        //public IEnumerable<string> GetName()
+        //{
+        //    return NameList.AsEnumerable();
+        //}
 
         //    #region Service Methods
         //    [HttpPost]
