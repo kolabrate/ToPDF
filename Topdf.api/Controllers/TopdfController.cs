@@ -138,7 +138,7 @@ namespace Topdf.api.Controllers
             }
         }
         [HttpPost]
-        public HttpResponseMessage EmailVerified(string email)
+        public HttpResponseMessage VerifyEmail(string email)
         {
             try
             {

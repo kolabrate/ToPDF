@@ -11,6 +11,7 @@ namespace Topdf.api.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
+          
         }
 
         protected override void Seed(ToPDFDBContext context)
