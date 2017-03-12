@@ -8,6 +8,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web.Http;
 using System.Web.Script.Serialization;
+using Topdf.api.DTO;
 using Topdf.api.Models;
 
 namespace Topdf.api.Controllers
@@ -110,8 +111,7 @@ namespace Topdf.api.Controllers
                     var user = context.Users.FirstOrDefault(c => c.Email == e && c.Password == p);
                     if (user == null) return SendHttpResponse("Not Authenticated", HttpStatusCode.BadRequest);
 
-                    string token = Encrypt(e + "|" + DateTime.Now.ToString("yyyyMMddHHmmssff"));
-                    var lresult = new LoginRes() { UserId = user.UserId, Token = token, Avatar = user.Avatar };
+                    var lresult = GetLoginResult(user);
                     return SendHttpResponse(lresult, HttpStatusCode.OK);
                 }
             }
@@ -119,6 +119,53 @@ namespace Topdf.api.Controllers
             {
                 return SendHttpResponse(e.Message, HttpStatusCode.BadRequest);
             }
+        }
+
+        [HttpGet]
+        public HttpResponseMessage UserAvatar(int userId)
+        {
+            try
+            {
+                using (var context = new ToPDFDBContext())
+                {
+                    var user = context.Users.FirstOrDefault(c => c.UserId == userId);
+                    if (user == null) return SendHttpResponse("User not found", HttpStatusCode.BadRequest);
+
+                    return SendHttpResponse(user.Avatar, HttpStatusCode.OK);
+                }
+            }
+            catch (Exception e)
+            {
+                return SendHttpResponse(e.Message, HttpStatusCode.BadRequest);
+            }
+        }
+
+        private UserAccountDto GetLoginResult(User user)
+        {
+            string token = Encrypt(user.Email + "|" + DateTime.Now.ToString("yyyyMMddHHmmssff"));
+            var r = new UserAccountDto();
+            r.User = new UserDto() { AuthToken = token, UserId = user.UserId, UserName = user.FirstName + " " + user.LastName };
+            using (var context = new ToPDFDBContext())
+            {
+                r.Messages = null;
+                r.PdfTemplates = context.PdfTemplates.Where(c => c.UserId == user.UserId && !c.IsDeleted).Take(20).Select
+                    (s => new PdfTemplateDto()
+                    {
+                        ApiKey = s.ApiKey,
+                        ContactEmail = s.ContactEmail,
+                        CreatedDate = s.CreatedDate,
+                        DeliveryMode = s.DeliveryMode.DeliveryModeName,
+                        Desc = s.Desc,
+                        EmailErrorTo = s.EmailErrorTo,
+                        IsActive = s.IsActive,
+                        PdfTemplateDesc = s.Desc,
+                        PdfTemplateName = s.PdfTemplateName,
+                        SuccessRate = 0
+                    }).ToList();
+                r.Subscription = context.UserSubscriptions.Where(c => c.UserId == user.UserId).Select(
+                    c => new SubscriptionDto() { SubscriptionName = c.Subscription.SubscriptionName, SubscriptionEndDate = c.EndDate, SubscriptionStatus = c.Status }).ToList();                
+            }
+            return r;
         }
 
         [HttpGet]

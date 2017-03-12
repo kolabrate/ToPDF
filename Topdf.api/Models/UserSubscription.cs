@@ -22,6 +22,7 @@ namespace Topdf.api.Models
         [Required]
         public DateTime CreatedDate { get; set; }
         public DateTime LastModifiedDate { get; set; }
+        public string Status { get; set; }
 
         public virtual User User { get; set; }
         public virtual Subscription Subscription { get; set; }
