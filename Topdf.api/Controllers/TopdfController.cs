@@ -14,7 +14,7 @@ using Topdf.api.Models;
 
 namespace Topdf.api.Controllers
 {
-    [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [EnableCors(origins: "http://localhost:1105", headers: "*", methods: "*")]
 
     public class TopdfController : ApiController
     {
