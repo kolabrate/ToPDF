@@ -7,12 +7,15 @@ using System.Net.Http.Headers;
 using System.Security.Cryptography;
 using System.Text;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Script.Serialization;
 using Topdf.api.DTO;
 using Topdf.api.Models;
 
 namespace Topdf.api.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
+
     public class TopdfController : ApiController
     {
 
