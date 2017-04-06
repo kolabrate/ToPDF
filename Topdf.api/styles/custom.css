@@ -1,0 +1,10 @@
+﻿.quill-always-hidden-toolbar{
+  display: none;
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+.quill-always-hidden-toolbar.ql-toolbar.ql-snow + .ql-container.ql-snow{
+  border-top: 1px solid #ccc;
+}

@@ -1,0 +1,248 @@
+<div data-ng-controller="signUpWizCtrl">
+    <div class="page">
+        <div class="row">
+            <div class="col-md-10">
+                <ul class="nav nav-boxed nav-justified">
+                    <li>
+                        <a href="javascript:;" data-ng-show="onFirstStep"><i class="color-success ti-user"></i> <strong>1. Email and Password</strong></a>
+                        <a href="javascript:;" data-ng-show="!onFirstStep"><i class="color-warning ti-user"></i> 1. Email and Password</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-ng-show="onSecondStep"><i class="color-success ti-layers"></i> <strong>2. Your Details</strong></a>
+                        <a href="javascript:;" data-ng-show="!onSecondStep"><i class="color-warning ti-layers"></i> 2. Your Details</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-ng-show="onThirdStep"><i class="color-success ti-video-clapper"></i> <strong>3. Choose your plan</strong></a>
+                        <a href="javascript:;" data-ng-show="!onThirdStep">
+                            <i class="color-warning ti-video-clapper"></i> 3. Choose your plan                            
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="row" data-ng-show="onFirstStep">
+            <div class="col-md-10">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <form name="form_signup1" class="form-horizontal form-validation" data-ng-submit="submitForm_1()">
+                            <fieldset>
+                                <div class="form-group">
+                                    <div class="col-sm-3">
+                                        <label for="">Email</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input type="email"
+                                               class="form-control"
+                                               required
+                                               data-ng-model="user.email">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-3">
+                                        <label for=""></label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <small>Your company email address where we'll send account related emails.</small>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-3">
+                                        <label for="">Password</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input type="password"
+                                               class="form-control"
+                                               required
+                                               data-ng-model="user.password">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-3">
+                                        <label for=""></label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <small>Password must be at least one lowercase letter, one numeral, and six characters.</small>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-3">
+                                        <label for="">Re-enter Password</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input type="password"
+                                               class="form-control"
+                                               required
+                                               data-ng-model="user.confirmPassword">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-3">
+                                        <label for=""></label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <span>By clicking on submit, you agree to <a href="javascript:;">terms & conditions</a> and <a href="javascript:;">privacy policy</a></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-3">
+                                        <label for=""></label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <button type="submit"
+                                                class="btn btn-primary btn-w-md"
+                                                data-ng-disabled="!canSubmit()">
+                                            Submit
+                                        </button>
+                                        <button class="btn btn-default btn-w-md"
+                                                data-ng-disabled="!canRevert()"
+                                                data-ng-click="revert()">
+                                            Reset
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" data-ng-show="onSecondStep">
+            <div class="col-md-10">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <form name="form_signup2" class="form-horizontal form-validation" data-ng-submit="submitForm_2()">
+                            <fieldset>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-2">First Name</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" required placeholder="First Name" data-ng-model="user.firstName">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-2">Last Name</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" required placeholder="Last Name" data-ng-model="user.lastName">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-2">Company Name</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" required placeholder="Company Name" data-ng-model="user.companyName">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-2">Company Website</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" required value="http://" data-ng-model="user.companyUrl">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-2">Phone</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" value="+" data-ng-model="user.companyPh">
+                                    </div>
+                                </div>
+                                <div class="divider divider-dashed divider-lg pull-in"></div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-2">Address Line 1</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" required placeholder="Address Line 1" data-ng-model="user.addr1">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-2">Address Line 2</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" placeholder="Address Line 2" data-ng-model="user.addr2">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-2">City</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" required placeholder="City" data-ng-model="user.city">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-2">State</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" required placeholder="State" data-ng-model="user.state">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-2">Country</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" required placeholder="Country" data-ng-model="user.country">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-2">Zip Code</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" required placeholder="Zip Code" data-ng-model="user.postCode">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-2">Picture</label>
+                                    <div class="col-sm-10">
+                                        <input type="file" title="Choose File" data-ui-file-upload data-ng-model="user.avatar">
+                                        <span class="help-block">Choose Photo or Company Logo.</span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-3">
+                                        <label for=""></label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <button type="submit"
+                                                class="btn btn-primary btn-w-md">
+                                            Submit
+                                        </button>
+                                        <button class="btn btn-default btn-w-md"
+                                                data-ng-click="revert()">
+                                            Reset
+                                        </button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" data-ng-show="onFirstStep">
+            <div class="col-md-10">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <form name="form_signup3" class="form-horizontal form-validation" data-ng-submit="submitForm_3()">
+                            <fieldset>
+                                <div class="form-group">
+                                    <div class="col-sm-3">
+                                        <label for="">Choose your personal plan</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <span></span>
+                                        <dl class="dl-vertical">
+                                            <dd data-ng-repeat="s in subcriptions">
+                                                <label class="ui-radio"><input name="radio1" type="radio" value="option1"><span>{{s.SubscriptionName}} for {{s.Price}}</span></label><br/>
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" data-ng-show="finished">
+            <div class="col-md-10">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        Your account has been created. To activate your account, please check your email. 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

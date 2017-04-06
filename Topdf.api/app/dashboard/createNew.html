@@ -1,0 +1,184 @@
+﻿<div class="page page-dashboard" data-ng-controller="createNewCtrl">
+    <section class="panel panel-default">
+        <div>
+            <div class="col-md-10">
+                <div class="panel panel-default">
+                    <div class="panel-body" ng-show="onFirstStep">
+                        <form name="form_createNew" class="form-horizontal form-validation" data-ng-submit="submitStep1()">
+                            <fieldset>
+                                <!--<div class="form-group">
+                                    <label for="" class="col-sm-2">Template Name</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" required placeholder="Template Name" data-ng-model="pdfTemplate.PdfTemplateName">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-2">Description</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" required placeholder="Some Description" data-ng-model="pdfTemplate.Desc">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-2">Contact Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" required placeholder="Recieve emails related api calls to this template" data-ng-model="pdfTemplate.ContactEmail">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-2">Email Error To</label>
+                                    <div class="col-sm-10">
+                                        <input type="email" class="form-control" required placeholder="Recieve error notifications related to api calls to this template" data-ng-model="pdfTemplate.EmailErrorTo">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="" class="col-sm-2">Delivery Mode</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" data-ng-model="pdfTemplate.DeliveryModeId">
+                                    </div>
+                                </div>-->
+                                <div class="form-group">
+                                    <label for="" class="col-sm-2">Sample Data</label>
+                                    <div class="col-sm-10">
+                                        <textarea name="" id="" class="form-control" rows="10" data-ng-model="pdfTemplate.SampleData"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-3">
+                                        <label for=""></label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <button type="submit"
+                                                class="btn btn-primary btn-w-md">
+                                            Submit
+                                        </button>
+                                        <button class="btn btn-default btn-w-md"
+                                                data-ng-click="revert()">
+                                            Reset
+                                        </button>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="panel-body" ng-show="onSecondStep">
+                        <div class="row">
+                            <script type="text/ng-template" id="categoryTree">
+                                <span data-value="{{d.FieldValue}}" data-path="{{d.FieldPath}}"> {{ d.FieldName }}</span>
+                                <ul ng-if="d.FieldName">
+                                    <li ng-repeat="d in d.Children" ng-include="'categoryTree'" class="allfields"
+                                          draggable="true" ondragstart="dragStart(event)" ondragover="allowDrop(event)">
+                                    </li>
+                                </ul>
+                            </script>
+                            <div class="col-md-3" style="overflow:scroll; min-height:500px;">
+
+                                <ul>
+                                    <li ng-repeat="d in roleList" class="allfields" ng-include="'categoryTree'"
+                                     draggable="true" ondragstart="dragStart(event)" ondragover="allowDrop(event)">
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="col-md-9" style="min-height:500px;"> 
+                                <div class="row">
+                                    <button class="btn btn-default" ng-click="buttonClicked('Text')"><i class="ti-text" /></button>
+                                    <button class="btn btn-default"><i class="ti-list" /></button>
+                                    <button class="btn btn-default"><i class="ti-list-ol" /></button>
+                                    <button class="btn btn-default"><i class="ti-layout-list-post" /></button>
+                                    <button class="btn btn-default"><i class="ti-link" /></button>
+                                    <button class="btn btn-default"><i class="ti-image" /></button>
+                                    <button class="btn btn-default"><i class="ti-layout-grid3-alt" /></button>
+                                                                    
+                                    <!--<div class="btn-group" uib-dropdown>
+                                        <button type="button" class="btn btn-default dropdown-toggle" uib-dropdown-toggle ng-disable="disabled"> {{fontSelected}} <span class="caret"></span> </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li ng-repeat="f in fontFamily" ng-model="fontSelected"><a href="javascript:;">{{f}}</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="btn-group" uib-dropdown>
+                                        <button type="button" class="btn btn-default dropdown-toggle" uib-dropdown-toggle ng-disable="disabled"> {{textSelected}} <span class="caret"></span> </button>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li ng-repeat="t in text" ng-model="fontSelected"><a href="javascript:;">{{t}}</a></li>
+                                        </ul>
+                                    </div>-->
+                                    <!--<div class="form-group">
+                                        <div class="col-sm-9">
+                                            <label for=""></label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <button type="submit"
+                                                    class="btn btn-primary btn-w-md" ng-click="preview()">
+                                                Preview
+                                            </button>
+                                        </div>
+                                    </div>-->
+                                </div>     <br/>     
+                                <div id="container" style="border:1px solid pink;height:100px;">
+                                    <div class="holder">
+                                        <ul style="list-style-type:none" >
+<li ng-repeat="l in lines">
+    <a href="javascript:;"  data-drag="true" jqyoui-draggable="{onStop: 'onstop(l)'}" data-jqyoui-options="{ containment: '#container'}">{{l.text}}</a>
+</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!--<style>
+                                    ng-quill-editor.ng-invalid .ql-container {
+                                        border: 1px dashed red;
+                                    }
+                                </style>                                
+                                <ng-quill-editor ng-model="title" on-editor-created="editorCreated(editor)" on-content-changed="contentChanged(editor, html, text)" ondrop="drop(event)"></ng-quill-editor>
+-->
+                                <!--<script>
+                                    var toolbarOptions = [
+  ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+  ['blockquote', 'code-block'],
+
+  [{ 'header': 1 }, { 'header': 2 }],               // custom button values
+  [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+  [{ 'script': 'sub' }, { 'script': 'super' }],      // superscript/subscript
+  [{ 'indent': '-1' }, { 'indent': '+1' }],          // outdent/indent
+  [{ 'direction': 'rtl' }],                         // text direction
+
+  [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+  [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+  [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+  [{ 'font': [] }],
+  [{ 'align': [] }],
+  ['link', 'image'],
+  ['clean']                                         // remove formatting button
+                                    ];
+                                    var quill = new Quill('#editor', {
+                                        modules: {
+                                            toolbar: toolbarOptions
+                                        },
+                                        theme: 'snow'
+                                    });
+
+                                    var toolbar = quill.getModule('toolbar');
+                                    toolbar.addHandler('image', function () {
+                                        console.log('image')
+                                    });
+
+
+                                    var customButton = document.querySelector('.ql-image');
+                                    customButton.addEventListener('click', function () {
+                                        var range = quill.getSelection();
+                                        alert("image button clicked");
+                                    });
+
+                                </script>
+                                <div id="editor" ondrop="drop(event)">
+                                    <p>Hello World!</p>
+                                    <p>Some initial <strong>bold</strong> text</p>
+                                    <p><br></p>
+                                </div>-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </div>
+    </section>
+</div>

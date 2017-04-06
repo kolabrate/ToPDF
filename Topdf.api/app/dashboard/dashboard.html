@@ -1,0 +1,122 @@
+<div class="page page-dashboard" data-ng-controller="DashboardCtrl">
+    <section class="panel panel-default">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-7">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="media">
+                                <a class="pull-left" href="javascript:;">
+                                    <div class="tl-icon btn-icon-round btn-icon btn-icon-thin btn-warning"><i class="ti-shopping-cart"></i></div>
+                                </a>
+                                <div class="media-body">
+                                    <ul class="list-unstyled list-info">
+                                        <li ng-repeat="s in subscriptions">
+                                            <span>Your subscription {{s.SubscriptionName}} is {{s.SubscriptionEndDate}} </span><span ng-show="s.SubscriptionEndDate!=null"> until {{s.SubscriptionEndDate}}</span>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="right">View More</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div>
+                            <div class="media">
+                                <div class="media-body">
+                                    <ul class="list-unstyled list-info">
+                                        <li>
+                                            <span class="color-success glyphicon glyphicon-ok"></span>
+                                            {{SuccessCount}} successfull calls in the last one month
+                                        </li>
+                                        <li>
+                                            <span class="color-danger glyphicon glyphicon-remove"></span>
+                                            {{ErrorCount}} errors
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="media">
+                                <a class="pull-left" href="javascript:;">
+                                    <img alt="" src="images/g1.jpg" class="img-rounded img64_64">
+                                </a>
+                                <div class="media-body">
+                                    <ul class="list-unstyled list-info">
+                                        <li>
+                                            <span class="icon glyphicon glyphicon-user"></span>
+                                            <label>User name</label>
+                                            {{user.UserName}}
+                                        </li>
+                                        <li>
+                                            <span class="icon glyphicon glyphicon-envelope"></span>
+                                            <label>Email</label>
+                                            {{Email}}
+                                        </li>
+                                        <li style="float:right;">
+                                            <div class="row">
+                                                <div class="col-md-7"></div>
+                                                <div class="col-md-11">
+                                                    <button type="button" class="btn btn-primary btn-block">Manage</button>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <button class="btn btn-info" ng-click="createNew()"><span class="glyphicon glyphicon-folder-open"></span> Create New</button>
+                        <p>&nbsp;</p>
+                        <table class="table table-striped table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Last One week</th>
+                                    <th>Template Name</th>
+                                    <th>Desc</th>
+                                    <th>Status</th>
+                                    <th>API Url</th>
+                                    <th>Delivery Mode</th>
+                                    <th>Contact Email</th>
+                                    <th>Email Error To</th>
+                                    <th>Created Date</th>
+                                    <th>Last Modified Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr data-ng-repeat="t in templates">
+                                    <td>
+                                        <div data-echarts data-options="{{getChart(t.SuccessRate)}}" style="height: 100px;"></div>
+                                    </td>
+                                    <td>{{t.PdfTemplateName}}</td>
+                                    <td>{{t.Desc}}</td>
+                                    <td>{{t.IsActive}}</td>
+                                    <td>{{t.ApiKey}}</td>
+                                    <td>{{t.DeliveryMode}}</td>
+                                    <td>{{t.ContactEmail}}</td>
+                                    <td>{{t.EmailErrorTo}}</td>
+                                    <td>{{t.CreatedDate}}</td>
+                                    <td>{{t.LastModifiedDate}}</td>
+                                    <td>
+                                        <span class="ti-pencil-alt" data-ng-click=""></span>
+                                        <span class="ti-files" data-ng-click=""></span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

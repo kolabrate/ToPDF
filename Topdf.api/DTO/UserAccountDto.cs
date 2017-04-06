@@ -11,6 +11,8 @@ namespace Topdf.api.DTO
         public List<PdfTemplateDto> PdfTemplates { get; set; }
         public MessageDto Messages { get; set; }
         public UserDto User { get; set; }
+        public int SuccessCount { get; set; }
+        public int ErrorCount { get; set; }
     }
 
     public class UserDto
@@ -18,6 +20,7 @@ namespace Topdf.api.DTO
         public int UserId { get; set; }
         public string UserName { get; set; }
         public string AuthToken { get; set; }
+        public string Email { get; set; }
     }
 
     public class MessageDto

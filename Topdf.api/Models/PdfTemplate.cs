@@ -34,7 +34,7 @@ namespace Topdf.api.Models
         [StringLength(10)]
         public string InputType { get; set; }
         [Required]
-        public string SampleXml { get; set; }
+        public string SampleData { get; set; }
         [Required]
         public bool IsDeleted { get; set; }
         [Required]
@@ -43,7 +43,7 @@ namespace Topdf.api.Models
         public DateTime CreatedDate { get; set; }
         public DateTime LastModifiedDate { get; set; }
 
-        public virtual ICollection<TemplateSection> TempalteSections { get; set; }
+        public virtual ICollection<TemplateSection> TemplateSections { get; set; }
         public virtual User User { get; set; }
         public virtual DeliveryMode DeliveryMode { get; set; }
     }
