@@ -69,7 +69,7 @@
         $scope.onFirstStep = true;
         $scope.onSecondStep = false;
         var editor = $('.editor');
-
+        
         $scope.pdfTemplate = {
             ContactEmail: '',
             DeliveryModeId: '',
@@ -99,6 +99,7 @@
             }).error(function (data, status, headers, config) {
 
             });
+            $('.toolbox').css('display', 'none');
         };
 
         $scope.getHtml = function () {
@@ -109,13 +110,24 @@
 
                 var line = {
                     lineType: lineType,
-                    fontSize: "10px",
-                    fontWeight: "bold",
-                    value: "Hello World!",
-                    fontColor: "red",
-                    backColor: "white",
-                    align: "left",
-                    indent: "10"
+                    bold: false,
+                    italic: false,
+                    underLine: false,
+                    strike: false,
+                    fontName: "white",
+                    fontSize: "left",
+                    justify: "10",
+                    alignCenter: true,
+                    alignLeft: true,
+                    alignRight: true,
+                    indent: 3,
+                    outdent: 4,
+                    foreColor: "",
+                    backColor: "",
+                    value: "",
+                    valuePath: "",
+                    leftQuote: false,
+                    rightQuote:false
                 };
                 el.children().each(function () {
 
@@ -124,6 +136,16 @@
                 lines.push(line);
             });
         };
+
+        $scope.getStyle = function () {
+            return {
+                "font-weight:"+taskType.backColor+
+                ";color:"+ taskType.color+
+                ";font-size:"+taskType.fontSize+
+                ";font-family:"+taskType.font+";";
+        }
+        };
+
         $scope.getChildLines = function (el) {
             line = {
                 lineType: "Text",
@@ -163,23 +185,59 @@
                 var line = {
                     lineType: "Text",
                     fontSize: "10px",
-                    fontWeight: "bold",
+                    IsBold: true,
+                    IsItalic: true,
+                    isUnderline: true,
+                    isStrike:false,
                     fontColor: "red",
                     backColor: "white",
                     align: "left",
                     x: 0,
                     y:0,
-                    text: "Add Text here..."
+                    text: "Add Text here...",
+                    height: 0,
+                    finishedDragging: null,
+                    showTb: false
                 };
                 $scope.lines.push(line);
             }
             $('.draggable').draggable();
 
         };
-        $scope.onstop = function (event, ui, line ) {
+        $scope.onstop = function (e, ui, line) {
+            e.preventDefault();
+            e.stopImmediatePropagation();
+            e.stopPropagation();
             line['x'] = event['offsetX'];
             line['y'] = event['offsetY'];
-            console.log(line);
+            line['height'] = event.target.offsetHeight;
+            line['finishedDragging'] = true;
+            console.log('1: ' + JSON.stringify(line));
+        };
+        $scope.dragging = false;
+        $scope.onstart = function (e, ui, line) {            
+            line['showTb'] = false;
+            line['finishedDragging'] = false;
+            console.log('3: ' + JSON.stringify(line));
+        };
+        $scope.itemClick = function (e, line) {
+            e.preventDefault();
+            if (line['finishedDragging']) {
+                line['finishedDragging'] = false;                
+            }
+            else {                
+                line['showTb'] = true;
+                var selfHeight = $('.toolbox').height();
+                e.target.style.border = '1px solid #ddd';
+                $('.toolbox').css('position', 'absolute');
+                $('.toolbox').css('top', line['x'] - selfHeight);
+                $('.toolbox').css('left', line['y'] - line['height']);
+                $('.toolbox').show();
+            }
+        };
+
+        $scope.closeTb = function () {
+            //$('.toolbox').css('display', 'none');
         };
 
         $scope.preview = function () {

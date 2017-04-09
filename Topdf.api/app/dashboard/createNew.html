@@ -81,13 +81,13 @@
 
                             <div class="col-md-9" style="min-height:500px;"> 
                                 <div class="row">
-                                    <button class="btn btn-default" ng-click="buttonClicked('Text')"><i class="ti-text" /></button>
-                                    <button class="btn btn-default"><i class="ti-list" /></button>
-                                    <button class="btn btn-default"><i class="ti-list-ol" /></button>
-                                    <button class="btn btn-default"><i class="ti-layout-list-post" /></button>
-                                    <button class="btn btn-default"><i class="ti-link" /></button>
-                                    <button class="btn btn-default"><i class="ti-image" /></button>
-                                    <button class="btn btn-default"><i class="ti-layout-grid3-alt" /></button>
+                                    <button class="btn btn-default" ng-click="buttonClicked('Text')"><i class="fa fa-font" /></button>
+                                    <button class="btn btn-default"><i class="fa fa-list-ul" /></button>
+                                    <button class="btn btn-default"><i class="fa fa-list-ol" /></button>
+                                    <button class="btn btn-default"><i class="fa fa-list-alt" /></button>
+                                    <button class="btn btn-default"><i class="fa fa-link" /></button>
+                                    <button class="btn btn-default"><i class="fa fa-image" /></button>
+                                    <button class="btn btn-default"><i class="fa fa-th-list" /></button>
                                                                     
                                     <!--<div class="btn-group" uib-dropdown>
                                         <button type="button" class="btn btn-default dropdown-toggle" uib-dropdown-toggle ng-disable="disabled"> {{fontSelected}} <span class="caret"></span> </button>
@@ -113,12 +113,64 @@
                                         </div>
                                     </div>-->
                                 </div>     <br/>     
-                                <div id="container" style="border:1px solid pink;height:100px;">
+                                <div id="container" style="border:1px solid pink;height:100px;" ng-click="closeTb()">
                                     <div class="holder">
                                         <ul style="list-style-type:none" >
-<li ng-repeat="l in lines">
-    <a href="javascript:;"  data-drag="true" jqyoui-draggable="{onStop: 'onstop(l)'}" data-jqyoui-options="{ containment: '#container'}">{{l.text}}</a>
-</li>
+<li ng-repeat="l in lines" class="dropdown hidden-xs" uib-dropdown>        
+    <a href="javascript:;" class="dropdown-toggle draggable" uib-dropdown-toggle data-toggle="dropdown" data-drag="true" jqyoui-draggable="{onStop: 'onstop(l)',onStart: 'onstart(l)'}" data-jqyoui-options="{ containment: '#container'}" ng-click="dragging?itemClick1($event,l):itemClick($event,l)" ng-mouseup="onmouseUp($event)"
+       ng-style="getStyle(l)">{{l.text}}</a>
+       <!--,l.strike && 'textDecoration':'strike',l.underLine && 'textDecoration':'underLine'
+       ,{'font-family':l.fontName},{'font-size':l.fontSize}
+       ,l.justify && 'text-align': 'justify' && 'text-justify: inter-word'
+       ,l.alignCenter && 'text-align': 'center'
+       ,l.alignLeft && 'text-align': 'left'
+       ,l.alignRight && 'text-align': 'right'
+       ,l.indent && 'text-indent': l.indent
+       ,l.outdent && 'text-indent': l.outdent
+       ,'color':l.foreColor,'background-color':l.backColor
+       ,l.outdent && 'text-indent': l.outdent}-->
+       
+    <div class="btn-group toolbox" ng-show="!l.dragging && l.showTb">        
+        <button type="button" class="btn btn-default" ng-click="l.bold=!l.bold"><span class="fa fa-bold"></span></button>
+        <button type="button" class="btn btn-default" ng-click="l.italic=!l.italic"><i class="fa fa-italic"></i></button>
+        <button type="button" class="btn btn-default" ng-click="l.underLine=!l.underLine"><i class="fa fa-underline"></i></button>
+        <button type="button" class="btn btn-default" ng-click="l.strike=!l.strike"><i class="fa fa-strikethrough"></i></button>
+        <div class="btn-group" uib-dropdown is-open="status.isopen">
+            <button type="button" class="btn btn-default dropdown-toggle" uib-dropdown-toggle>
+                {{l.fontName}}     <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" ng-model="l.fontName">
+                <li><a href="javascript:;" style="font-family:Arial, Helvetica, sans-serif;">Arial</a></li>
+                <li><a href="javascript:;" style="font-family:Calibri;">Calibri</a></li>
+                <li><a href="javascript:;" style="font-family:'Comic Sans MS';">Comic Sans MS </a></li>
+                <li><a href="javascript:;" style="font-family:courier;">Courier</a></li>
+                <li><a href="javascript:;" style="font-family:georgia;">Georgia </a></li>
+                <li><a href="javascript:;" style="font-family:Helvetica, sans-serif;">Helvetica </a></li>
+                <li><a href="javascript:;" style="font-family:monospace;">Monospace </a></li>
+                <li><a href="javascript:;" style="font-family:'Times New Roman';">Times New Roman</a></li>
+                <li><a href="javascript:;" style="font-family:Verdana;">Verdana</a></li>
+            </ul>
+        </div>
+        <div class="btn-group" uib-dropdown is-open="status.isopen">
+            <button type="button" class="btn btn-default dropdown-toggle" uib-dropdown-toggle>
+                {{l.fontSize}}    <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" ng-model="l.fontSize">
+                <li><a href="javascript:;" style="font-family:Arial, Helvetica, sans-serif;">Arial</a></li>
+            </ul>
+        </div>
+<button type="button" class="btn btn-default" ng-click="l.alignLeft=!l.alignLeft"><span class="fa fa-align-left"></span></button>
+<button type="button" class="btn btn-default" ng-click="l.alignCenter=!l.alignCenter"><i class="fa fa-align-center"></i></button>
+<button type="button" class="btn btn-default" ng-click="l.alignRight=!l.alignRight"><i class="fa fa-align-right"></i></button>
+        <button type="button" class="btn btn-default" ng-click="l.justify=!l.justify"><i class="fa fa-align-justify"></i></button>
+        <button type="button" class="btn btn-default" ng-click="l.indent=l.indent+1"><i class="fa fa-indent"></i></button>
+        <button type="button" class="btn btn-default" ng-click="l.outdent=l.outdent-1"><i class="fa fa-outdent"></i></button>
+        <button colorpicker type="button" class="btn btn-default" ng-click="l.outdent=l.outdent-1"  colorpicker-position="top" ng-model="l.foreColor"><i class="fa fa-font"></i></button>
+        <button colorpicker type="button" class="btn btn-default" ng-click="l.outdent=l.outdent-1"  colorpicker-position="top" ng-model="l.backColor"><i class="fa fa-font"></i></button>
+        <button type="button" class="btn btn-default" ng-click="l.leftQuote=!l.leftQuote"><i class="fa fa-quote-right"></i></button>
+        <button type="button" class="btn btn-default" ng-click="l.rightQuote=!l.rightQuote"><i class="fa fa-quote-left"></i></button>
+    </div>
+    
                                         </ul>
                                     </div>
                                 </div>

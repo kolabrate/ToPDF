@@ -188,6 +188,7 @@
     <Content Include="app\core\config.route.js" />
     <Content Include="app\core\i18n.js" />
     <Content Include="app\dashboard\angulardnd.js" />
+    <Content Include="app\dashboard\bootstrap-colorpicker-module.min.js" />
     <Content Include="app\dashboard\createNew.controller.js" />
     <Content Include="app\dashboard\designer.html" />
     <Content Include="app\dashboard\createNew.html" />
@@ -1082,6 +1083,7 @@
     <Content Include="scripts\ai.0.15.0-build58334.js" />
     <Content Include="scripts\ai.0.15.0-build58334.min.js" />
     <Content Include="styles\bootstrap.css" />
+    <Content Include="styles\colorpicker.min.css" />
     <Content Include="styles\custom.css" />
     <Content Include="styles\main.css" />
     <Content Include="styles\ui.css" />

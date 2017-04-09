@@ -7,6 +7,7 @@
         'ngAnimate',
         'ngAria',
         'ngDragDrop',
+        'colorpicker.module',
         //'ngQuill',
         // 3rd Party Modules
         'ui.bootstrap',
